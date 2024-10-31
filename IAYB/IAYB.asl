@@ -38,7 +38,7 @@ isLoading
         return current.sceneTransition != 2;
     };
 
-    return current.destination == "Scenes/UI/Menus/LevelSelect" || current.levelState == 2 || current.levelState == 0 || current.sceneTransition != 2;
+    return current.sceneTransition != 2 || current.destination == "Scenes/UI/Menus/LevelSelect" || current.levelState == 2 || current.levelState == 0;
 }
 
 start
@@ -46,15 +46,15 @@ start
     if (settings["ILs"] == true) {
         return current.sceneTransition == 2 && old.tracking == false && current.tracking == true;
     } else {
-        return current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial" && current.sceneTransition == 2 && old.tracking == false && current.tracking == true;
+        return current.sceneTransition == 2 && old.tracking == false && current.tracking == true && current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial";
     };
 }
 
 split
 {
-    if (current.cutsceneID == 22) {
+    if (current.cutsceneID == 22 && old.destination == "Scenes/UI/Cutscenes/Cutscene") {
         return old.destination == "Scenes/UI/Cutscenes/Cutscene" && current.destination == "Scenes/UI/Menus/LevelSelect";
+    } else {
+        return (old.destination == "#01c_Special_Tutorial" && current.destination == "Scenes/UI/Menus/LevelSelect") || (old.levelState == 1 && current.levelState == 2);
     };
-
-    return (old.destination == "#01c_Special_Tutorial" && current.destination == "Scenes/UI/Menus/LevelSelect") || (old.levelState == 1 && current.levelState == 2);
 }

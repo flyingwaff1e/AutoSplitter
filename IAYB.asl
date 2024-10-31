@@ -20,7 +20,7 @@ init
         vars.Helper["sceneTransition"] = mono.Make<byte>("GameManager", "instance", "activeSceneTransition", "state");
 
         //Tracks if player is active. Makes split starts more precise.
-        vars.Helper["tracking"] = mono.Make<byte>("GameManager", "instance", "levelController", "gameplayTracker", "tracking");
+        vars.Helper["tracking"] = mono.Make<bool>("GameManager", "instance", "levelController", "gameplayTracker", "tracking");
 
         //Technically a transition destination, but works as a current scene
         vars.Helper["destination"] = mono.MakeString("GameManager", "instance", "activeSceneTransition", "destination");
@@ -34,9 +34,9 @@ init
 
 isLoading
 {
-    if (current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial") {
+    if (current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial" || current.destination == "#01c_Special_Tutorial") {
         return current.sceneTransition != 2;
-    }
+    };
 
     return current.destination == "Scenes/UI/Menus/LevelSelect" || current.levelState == 2 || current.levelState == 0 || current.sceneTransition != 2;
 }
@@ -44,9 +44,9 @@ isLoading
 start
 {
     if (settings["ILs"] == true) {
-        return current.sceneTransition == 2 && old.tracking == 0 && current.tracking == 1;
+        return current.sceneTransition == 2 && old.tracking == false && current.tracking == true;
     } else {
-        return current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial" && current.sceneTransition == 2 && old.tracking == 0 && current.tracking == 1;
+        return current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial" && current.sceneTransition == 2 && old.tracking == false && current.tracking == true;
     };
 }
 
@@ -54,7 +54,7 @@ split
 {
     if (current.cutsceneID == 22) {
         return old.destination == "Scenes/UI/Cutscenes/Cutscene" && current.destination == "Scenes/UI/Menus/LevelSelect";
-    }
+    };
 
     return (old.destination == "#01c_Special_Tutorial" && current.destination == "Scenes/UI/Menus/LevelSelect") || (old.levelState == 1 && current.levelState == 2);
 }

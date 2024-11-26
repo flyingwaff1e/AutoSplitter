@@ -1,61 +1,41 @@
-state("ChildrenOfTheSun") {}
+state("ChildrenOfTheSun") { }
 
 startup
 {
-    //GameManager
-    vars.scanTarget = new SigScanTarget(49, "55488BEC4883EC50488975F8488BF148B8????????????????488B0833D249BB????????????????41FFD385C0743248B8????????????????488930488945E848B9????????????????488D6D0049BB????????????????41FFD3488B45E8EB22488BCE669049BB????????????????41FFD3488BC849BB????????????????41FFD3488B8600010000488945D84885F60F843401000048B9????????????????488D64240049BB????????????????41FFD3488BC84885F60F84EE0000004889712048894DD04883C12066669049BB????????????????41FFD3488B45D8488B55D048B9????????????????48894A2848B9????????????????48894A4048B9????????????????4C8B41284C894218488B492048894A10C6427000488BC883380066669049BB????????????????41FFD348B9????????????????9049BB????????????????41FFD3488945E0488BC8488D6D0049BB????????????????41FFD3488B45E0488D4E18488945E8488901488D6D0049BB????????????????41FFD3488B45E8488B4618488BC8833800488D64240049BB????????????????41FFD3488B75F8488D65005DC3BA12010000B962010000488DAD0000000049BB????????????????41FFD3BA52010000B9F30000009049BB????????????????41FFD3");
+    Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
+    vars.Helper.GameName = "Children Of The Sun";
 }
 
 init
 {
-    IntPtr ptr = IntPtr.Zero;
-    foreach (var page in game.MemoryPages()) {
-        var scanner = new SignatureScanner(game, page.BaseAddress, (int)page.RegionSize);
-        if (ptr == IntPtr.Zero) {
-            ptr = scanner.Scan(vars.scanTarget);
-        }
-        if (ptr != IntPtr.Zero) {
-            break;
-        }
-    }
-    IntPtr instancePtr = (IntPtr) BitConverter.ToInt64(game.ReadBytes(ptr, 8), 0);
+    vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => {
 
-    vars.targetsToHit = new MemoryWatcher<int>(new DeepPointer(instancePtr, 0x28, 0x48, 0x18));
-    vars.levelStarted = new MemoryWatcher<bool>(new DeepPointer(instancePtr, 0x28, 0x128));
-    vars.carChaseDone = new MemoryWatcher<bool>(new DeepPointer(instancePtr, 0x150));
-    vars.carChase = new MemoryWatcher<bool>(new DeepPointer(instancePtr, 0x28, 0xD5));
-    vars.loading = new MemoryWatcher<bool>(new DeepPointer(instancePtr, 0x149));
+        vars.Helper["loading"] = mono.Make<bool>("GameManager", "gm", "loading");
+        vars.Helper["carChase"] = mono.Make<bool>("GameManager", "gm", "lm", "carChase");
+        vars.Helper["carChaseDone"] = mono.Make<bool>("GameManager", "gm", "carChaseDone");
+        vars.Helper["levelStarted"] = mono.Make<bool>("GameManager", "gm", "lm", "levelStarted");
+        vars.Helper["targetsToHit"] = mono.Make<byte>("GameManager", "gm", "lm", "targetsToHit", 0x18);
 
-    vars.watchers = new MemoryWatcherList() {
-        vars.targetsToHit,
-        vars.levelStarted,
-        vars.carChaseDone,
-        vars.carChase,
-        vars.loading
-    };  
-}
-
-update
-{
-    vars.watchers.UpdateAll(game);
+        return true;
+    });
 }
 
 start
 {
-    return (!vars.loading.Current && vars.levelStarted.Current && !vars.levelStarted.Old && vars.targetsToHit.Current > 0) ||
-    (!vars.loading.Current && vars.loading.Old && vars.levelStarted.Current && vars.targetsToHit.Current > 0);
+    return (!current.loading && current.levelStarted && !old.levelStarted && current.targetsToHit > 0) || 
+    (!current.loading && old.loading && current.levelStarted && current.targetsToHit > 0);
 }
 
 split
 {
-    return vars.targetsToHit.Current == 0 && vars.targetsToHit.Changed && !vars.loading.Current;
+    return current.targetsToHit == 0 && old.targetsToHit > 0 && !current.loading;
 }
 
 isLoading
 {
-    if (!vars.carChase.Current || vars.carChaseDone.Current) {
-        return (vars.loading.Current || !vars.levelStarted.Current || vars.targetsToHit.Current == 0);
+    if (!current.carChase || current.carChaseDone) {
+        return (current.loading || !current.levelStarted || current.targetsToHit == 0);
     } else {
-        return vars.loading.Current || !vars.levelStarted.Current;
+        return current.loading || !current.levelStarted;
     }
 }

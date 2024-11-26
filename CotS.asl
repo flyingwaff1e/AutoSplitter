@@ -3,7 +3,7 @@ state("ChildrenOfTheSun") { }
 startup
 {
     Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
-    vars.Helper.GameName = "Children Of The Sun";
+    vars.Helper.GameName = "Children of the Sun";
 }
 
 init

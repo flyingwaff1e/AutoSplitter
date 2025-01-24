@@ -43,7 +43,7 @@ isLoading
 
 start
 {
-    if (settings["ILs"] == true) {
+    if (settings["ILs"]) {
         return current.sceneTransition == 2 && old.tracking == false && current.tracking == true;
     } else {
         return current.sceneTransition == 2 && old.tracking == false && current.tracking == true && current.destination == "Scenes/!___STORY SCENES/#01a_Special_Tutorial";
@@ -57,4 +57,11 @@ split
     } else {
         return (old.destination == "#01c_Special_Tutorial" && current.destination == "Scenes/UI/Menus/LevelSelect") || (old.levelState == 1 && current.levelState == 2);
     };
+}
+
+reset
+{
+    if (settings["ILs"] && old.sceneTransition != 0 && current.sceneTransition == 0) {
+        return true;
+    }
 }

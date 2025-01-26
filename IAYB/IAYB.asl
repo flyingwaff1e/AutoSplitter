@@ -10,7 +10,11 @@ startup
 
 init
 {
-    vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => {
+    vars.Helper.TryLoad = (Func<dynamic, bool>)(mono =>
+    {
+        // used to identify if we're on Mercy (25)
+        // note that this is only level number within a pack. which means ids <= 12 are ambiguous (multiple levels share that number)
+        vars.Helper["level"] = mono.Make<int>("GameManager", "instance", "levelController", "informationSetter", "levelInformation", "levelNumber");
 
         //Level states: 0 - intro; 1 - active; 2 - completed; 3 - failed.
         vars.Helper["levelState"] = mono.Make<byte>("GameManager", "instance", "levelController", "levelState");
@@ -61,7 +65,8 @@ split
 
 reset
 {
-    if (settings["ILs"] && old.sceneTransition != 0 && current.sceneTransition == 0) {
+    // disable for Mercy since it transitions out before the level finishes
+    if (settings["ILs"] && current.level != 25 && old.sceneTransition != 0 && current.sceneTransition == 0) {
         return true;
     }
 }

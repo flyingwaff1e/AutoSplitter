@@ -2,8 +2,8 @@ state("UNSIGHTED") { }
 
 startup
 {
-	vars.timerModel = new TimerModel { CurrentState = timer };
-	
+    vars.timerModel = new TimerModel { CurrentState = timer };
+    
     Assembly.Load(File.ReadAllBytes("Components/asl-help")).CreateInstance("Unity");
     vars.Helper.GameName = "UNSIGHTED";
 
@@ -81,27 +81,24 @@ startup
     settings.SetToolTip("BossKills",                    "Splits after defeating a boss");
 
     settings.Add("RotatingSpiderDefeated",   false,     "Spinarach",               "BossKills");
-
     settings.Add("GardenMiniBossDefeated",   false,     "Knights",                 "BossKills");
     settings.Add("GardenBossDefeated",       false,     "Asana",                   "BossKills");
-
     settings.Add("AquariumCrab",             false,     "King Claudius",           "BossKills");
     settings.Add("AquariumBossDefeated",     false,     "Maria",                   "BossKills");
-
     settings.Add("MuseumBossDefeated",       false,     "Luna",                    "BossKills");
     settings.Add("FactoryBossDefeated",      false,     "Nova",                    "BossKills");
     settings.Add("AfterEagleBossCutscene",   false,     "Sol",                     "BossKills");
-	settings.Add("GrimReaperDefeated",       false,	    "M.",				       "BossKills");
-	settings.Add("ChurchCrab",               false,     "Tomb Guardian",	       "BossKills");
+    settings.Add("GrimReaperDefeated",       false,     "M.",                      "BossKills");
+    settings.Add("ChurchCrab",               false,     "Tomb Guardian",           "BossKills");
 
     //Mecha
     settings.Add("SplitMecha",               false,     "Mecha");
     settings.SetToolTip("SplitMecha",                   "Splits HAILEE states and upgrades");
 
-    settings.Add("MechaActivated",           false,		"Activated",	           "SplitMecha");
-    settings.Add("MechaDestroyed",           false,		"Destroyed",	           "SplitMecha");
-    settings.Add("MechaArmsUpgrade",         false,		"Arms Upgrade",	           "SplitMecha");
-    settings.Add("MechaCannonUpgrade",       false,		"Cannon Upgrade",	       "SplitMecha");
+    settings.Add("MechaActivated",           false,     "Activated",               "SplitMecha");
+    settings.Add("MechaDestroyed",           false,     "Destroyed",               "SplitMecha");
+    settings.Add("MechaArmsUpgrade",         false,     "Arms Upgrade",            "SplitMecha");
+    settings.Add("MechaCannonUpgrade",       false,     "Cannon Upgrade",          "SplitMecha");
 
     //Special
     settings.Add("SplitSpecial",             false,     "Special");
@@ -122,15 +119,15 @@ startup
     settings.Add("Blades",                   false,     "Blades",                  "SplitWeapons");
     
     settings.Add("IronEdge",                 false,     "Iron Edge",               "Blades");
-	settings.Add("Frostbite",                false,     "Frostbite",               "Blades");
+    settings.Add("Frostbite",                false,     "Frostbite",               "Blades");
     settings.Add("Flameblade",               false,     "Flameblade",              "Blades");
-	settings.Add("ThunderEdge",              false,     "Thunder Edge",            "Blades");
-	settings.Add("ElementalBlade",           false,     "Elemental Blade",         "Blades");
+    settings.Add("ThunderEdge",              false,     "Thunder Edge",            "Blades");
+    settings.Add("ElementalBlade",           false,     "Elemental Blade",         "Blades");
 
-	//Axes
+    //Axes
     settings.Add("Axes",                     false,     "Axes",                    "SplitWeapons");
 
-	settings.Add("WarAxe",                   false,     "War Axe",                 "Axes");
+    settings.Add("WarAxe",                   false,     "War Axe",                 "Axes");
     settings.Add("IceAxe",                   false,     "Frost Axe",               "Axes");
     settings.Add("MeteorAxe",                false,     "Meteor Axe",              "Axes");
     settings.Add("ThunderAxe",               false,     "Thunder Axe",             "Axes");
@@ -150,21 +147,21 @@ startup
 
     settings.Add("GranadeLauncher",          false,     "Grenade L.",              "Grenade Launchers");
     settings.Add("IceGranade",               false,     "Ice Grenade",             "Grenade Launchers");
-	settings.Add("GranadeShotgun",           false,     "Grenade Spread",          "Grenade Launchers");
+    settings.Add("GranadeShotgun",           false,     "Grenade Spread",          "Grenade Launchers");
 
-	//Throwers
+    //Throwers
     settings.Add("Throwers",                 false,     "Throwers",                "SplitWeapons");
 
-	settings.Add("IceThrower",               false,     "Cryojet",                 "Throwers");
-	settings.Add("Flamethrower",             false,     "Flamethrower",            "Throwers");
-	
+    settings.Add("IceThrower",               false,     "Cryojet",                 "Throwers");
+    settings.Add("Flamethrower",             false,     "Flamethrower",            "Throwers");
+    
     //Shurikens
     settings.Add("Shurikens",                false,     "Shurikens",               "SplitWeapons");
 
-	settings.Add("IronStar",                 false,     "Shuriken",                "Shurikens");
+    settings.Add("IronStar",                 false,     "Shuriken",                "Shurikens");
     settings.Add("IceStar",                  false,     "Ice Shuriken",            "Shurikens");
-	settings.Add("FireStar",                 false,     "Fire Shuriken",           "Shurikens");
-	settings.Add("ThunderStar",              false,     "Thunder Shuriken",        "Shurikens");
+    settings.Add("FireStar",                 false,     "Fire Shuriken",           "Shurikens");
+    settings.Add("ThunderStar",              false,     "Thunder Shuriken",        "Shurikens");
 
     //Hookshots
     settings.Add("Hookshots",                false,     "Hookshots",               "SplitWeapons");
@@ -173,7 +170,7 @@ startup
     settings.Add("Hookshot2",                false,     "Double Hookshot",         "Hookshots");
 
     vars.playerDataSettings = new List<string>()
-	{
+    {
         //Bosses
         "AfterEagleBossCutscene",
         "GardenMiniBossDefeated",
@@ -182,10 +179,10 @@ startup
         "AquariumBossDefeated",
         "FactoryBossDefeated",
         "GardenBossDefeated",
-		"MuseumBossDefeated",
+        "MuseumBossDefeated",
         "GrimReaperDefeated",
         "AquariumCrab",
-		"ChurchCrab",
+        "ChurchCrab",
 
         //Mecha
         "MechaActivated",
@@ -196,10 +193,10 @@ startup
         //Prologue
         "LabEscapeCutscene",
         "FinishedFirstPart"
-	};
+    };
 
     vars.roomList = new List<string>()
-	{
+    {
         "CavesShrineBoss",
         "AquariumBossRoom",
         "MuseumBossRoom",
@@ -208,7 +205,7 @@ startup
         "DowntownSecretChurch",
         "FinalBossRoom",
         "FinalBoss2Room"
-	};
+    };
 
     vars.itemList = new List<string>()
     {
@@ -226,73 +223,73 @@ init
     vars.Helper.TryLoad = (Func<dynamic, bool>)(mono => {
 
         vars.Helper["loadedSlot"] = mono.Make<int>("GlobalGameData", 1, "_instance", "loadedSlot");
-		
-		vars.Helper["cutscene"] = mono.Make<bool>("CutsceneController", 1, "_instance", "cutscene");
-		
-		vars.UpdateData = (Func<dynamic, bool>)(data => {
-		
-			vars.Helper["dataStringsRaw"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x78);
-			current.dataStrings = new List<string>();
+        
+        vars.Helper["cutscene"] = mono.Make<bool>("CutsceneController", 1, "_instance", "cutscene");
+        
+        vars.UpdateData = (Func<dynamic, bool>)(data => {
+        
+            vars.Helper["dataStringsRaw"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x78);
+            current.dataStrings = new List<string>();
 
-			vars.Helper["Rooms"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x90);
-			vars.RoomName = mono["VisitedRoomDescription"]["roomDescriptionName"];
+            vars.Helper["Rooms"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x90);
+            vars.RoomName = mono["VisitedRoomDescription"]["roomDescriptionName"];
 
-			vars.Helper["Items"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x38);
-			vars.ItemName = mono["PlayerItemData"]["itemName"];
+            vars.Helper["Items"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x38);
+            vars.ItemName = mono["PlayerItemData"]["itemName"];
             vars.ItemQuanty = mono["PlayerItemData"]["quanty"];
 
             vars.Helper["Chips"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x50);
-			vars.ChipName = mono["PlayerChipData"]["chipName"];
+            vars.ChipName = mono["PlayerChipData"]["chipName"];
 
-			vars.Helper["Weapons"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x28);
-			vars.WeaponName = mono["EquipmentData"]["equipmentName"];
+            vars.Helper["Weapons"] = mono.MakeList<IntPtr>("GlobalGameData", 1, "_instance", "currentData", "playerDataSlots", 0x10, 0x20+(data*8), 0x28);
+            vars.WeaponName = mono["EquipmentData"]["equipmentName"];
 
-			vars.Helper["loading"] = mono.Make<bool>("GlobalSceneManager", "loading");
-			
-			return true;
-		});
-		
+            vars.Helper["loading"] = mono.Make<bool>("GlobalSceneManager", "loading");
+            
+            return true;
+        });
+        
         return true;
     });
-	
-	vars.Hookshot = 0;
-	vars.HookshotCheck = false;
+    
+    vars.Hookshot = 0;
+    vars.HookshotCheck = false;
 
     vars.MeteorShard = 0;
-	vars.ShardsTotal = 0;
-	
-	vars.InitialLoad = false;
-	vars.usedDataStrings = new List<String>();
+    vars.ShardsTotal = 0;
+    
+    vars.InitialLoad = false;
+    vars.usedDataStrings = new List<String>();
 }
 
 update
 {
-	if ((timer.CurrentPhase == TimerPhase.Ended || timer.CurrentPhase == TimerPhase.NotRunning) && current.cutscene && !vars.InitialLoad) {
-		vars.Helper.Update();
-		vars.UpdateData(current.loadedSlot);
-		vars.InitialLoad = true;
-	}
+    if ((timer.CurrentPhase == TimerPhase.Ended || timer.CurrentPhase == TimerPhase.NotRunning) && current.cutscene && !vars.InitialLoad) {
+        vars.Helper.Update();
+        vars.UpdateData(current.loadedSlot);
+        vars.InitialLoad = true;
+    }
 }
 
 split
 {
-	//Boss Kills / Mecha / Prologue
-	if (old.dataStringsRaw.Count < current.dataStringsRaw.Count) {
-		
-		current.dataStrings = ((List<IntPtr>)current.dataStringsRaw).Select(address => {
-			return vars.Helper.ReadString(100, ReadStringType.UTF16, address + 0x14);
-		}).ToList();
+    //Boss Kills / Mecha / Prologue
+    if (old.dataStringsRaw.Count < current.dataStringsRaw.Count) {
+        
+        current.dataStrings = ((List<IntPtr>)current.dataStringsRaw).Select(address => {
+            return vars.Helper.ReadString(100, ReadStringType.UTF16, address + 0x14);
+        }).ToList();
 
         var i = current.dataStrings.Count - 1;
-		var lastString = current.dataStrings[i];
+        var lastString = current.dataStrings[i];
 
-		if (vars.playerDataSettings.Contains(lastString) && !vars.usedDataStrings.Contains(lastString) && current.dataStrings.Contains(lastString)) {
+        if (vars.playerDataSettings.Contains(lastString) && !vars.usedDataStrings.Contains(lastString) && current.dataStrings.Contains(lastString)) {
 
-			vars.usedDataStrings.Add(lastString);
-			return settings[lastString];
-		}
-	}
-	
+            vars.usedDataStrings.Add(lastString);
+            return settings[lastString];
+        }
+    }
+    
     //Rooms
     if (old.Rooms.Count < current.Rooms.Count) {
 
@@ -313,9 +310,9 @@ split
         var lastItem = vars.Helper.ReadString(current.Items[i] + vars.ItemName);
         
         if (lastItem == "MeteorShard") {
-			vars.MeteorShard = current.Items[i];
+            vars.MeteorShard = current.Items[i];
             vars.ShardsTotal = 1;
-		}
+        }
 
         if (vars.itemList.Contains(lastItem))
             return settings[lastItem];
@@ -335,26 +332,26 @@ split
 
         var i = current.Weapons.Count - 1;
         var lastWeapon = vars.Helper.ReadString(current.Weapons[i] + vars.WeaponName);
-		
-		if (lastWeapon == "Hookshot1") {
-			vars.Hookshot = current.Weapons[i];
-			vars.HookshotCheck = true;
-		}
+        
+        if (lastWeapon == "Hookshot1") {
+            vars.Hookshot = current.Weapons[i];
+            vars.HookshotCheck = true;
+        }
 
         return settings[lastWeapon];
     }
 
     //Shards
     if (vars.ShardsTotal != 0 && vars.Helper.Read<int>((IntPtr)vars.MeteorShard + vars.ItemQuanty) > vars.ShardsTotal) {
-		vars.ShardsTotal += 1;
-		return settings["MeteorShard"];
-	}
+        vars.ShardsTotal += 1;
+        return settings["MeteorShard"];
+    }
 
     //Double Hookshot
-	if (vars.HookshotCheck && vars.Helper.ReadString((IntPtr)vars.Hookshot + vars.WeaponName) == "Hookshot2") {
-		vars.HookshotCheck = false;
-		return settings["Hookshot2"];
-	}
+    if (vars.HookshotCheck && vars.Helper.ReadString((IntPtr)vars.Hookshot + vars.WeaponName) == "Hookshot2") {
+        vars.HookshotCheck = false;
+        return settings["Hookshot2"];
+    }
 }
 
 start
